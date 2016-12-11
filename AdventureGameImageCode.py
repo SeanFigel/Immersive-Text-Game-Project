@@ -306,7 +306,7 @@ def getMessagesDict():
     + "There is moonlight streaming through the windows to your right, which allows you to see what looks to be a switch on the side of the wall. "\
     + "You flip the switch."
   bedroom = "\n-----Bedroom-----\n"\
-    + "You find yourself in a small bed room. "\
+    + "You find yourself in a small bedroom. "\
     + "There are three doors in the bedroom and a small window. "\
     + "There is a small bed and the room is covered in dust. "
   bedroomSouth = "\n-----Bedroom South-----\n"\
@@ -376,14 +376,17 @@ def getMessagesDict():
 
 #----Image Code----
 #Darkens all color values in a picture.
-def darken(pic):
+def darken(originalPic):
+ pic = copy(originalPic)
  pixels = getPixels(pic)
  for p in pixels:
   darkColor = makeDarker(getColor(p))
   setColor(p, darkColor)
+ return pic
 
 #Lightens all color values in a circle in the center of an image.
-def flashLight(pic):
+def flashLight(originalPic):
+ pic = copy(originalPic)
  circleRadius = min(getHeight(pic), getWidth(pic)) / 2
  for x in range(0, getWidth(pic)):
   for y in range(0, getHeight(pic)):
@@ -392,3 +395,83 @@ def flashLight(pic):
     p = getPixel(pic, x, y)
     lightColor = makeLighter(getColor(p))
     setColor(p, lightColor)
+ return pic
+
+#Blurs an image, makes it redder, and adds the text "GAME OVER" to the center.
+def gameOver(pic):
+ picCopy = copy(pic)
+ gameOverPic = moveAndFade(pic, picCopy, 10, factor=4)
+ gameOverPic = moreRed(gameOverPic, 50)
+ gameOverPic = endText(gameOverPic, "GAME OVER")
+ return gameOverPic
+ 
+def moveAndFade(source, target, distance = 0, moveLeft = false, factor=1):
+  targetW = getWidth(target)
+  targetH = getHeight(target)
+  sourceW = getWidth(source)
+  sourceH = getHeight(source)
+  if(distance > targetW):
+    return target    
+  xMax = min(distance + sourceW, targetW)
+  yMax = min(sourceH, targetH)
+  fadeSize = 50
+  x = 0
+  for destX in range(distance, xMax):
+    y = 0
+    for destY in range(0, yMax):
+      if(moveLeft):
+        p = getPixel(source, xMax-x-1, yMax-y-1)
+        destPixel = getPixel(target, xMax-destX-1, yMax-destY-1)
+      else:
+        p = getPixel(source, x, y)
+        destPixel = getPixel(target, destX, destY)
+      
+      if(x<fadeSize*factor):
+        # Create a fade in effect
+        tempFactor = x-1
+        r = (tempFactor*getRed(p)+fadeSize*getRed(destPixel))/(fadeSize+tempFactor)
+        g = (tempFactor*getGreen(p)+fadeSize*getGreen(destPixel))/(fadeSize+tempFactor)
+        b = (tempFactor*getBlue(p)+fadeSize*getBlue(destPixel))/(fadeSize+tempFactor)
+      else:
+        # Copy Average, transparent effect
+        r = (factor*getRed(p)+getRed(destPixel))/(factor+1)
+        g = (factor*getGreen(p)+getGreen(destPixel))/(factor+1)
+        b = (factor*getBlue(p)+getBlue(destPixel))/(factor+1)
+      setColor(destPixel, makeColor(r,g,b))
+      y += 1
+    x += 1
+  return target
+
+#Makes a copy of a picture
+def copy(pic):
+  w = getWidth(pic)
+  h = getHeight(pic)
+  mypic = makeEmptyPicture(w, h)
+  for p in getPixels(pic):
+    x = getX(p)
+    y = getY(p)
+    setColor(getPixel(mypic, x, y), getColor(p))
+  return mypic
+
+#Increases red value of pixels by n%.
+def moreRed(pic, n):
+ #Set n to a decimal number appropriate for increase. (100 increased by 75% is 100*1.75)
+ n = (100+n) * 0.01
+ pixels = getPixels(pic)
+ for p in pixels:
+  r = getRed(p)
+  r = r * n
+  #Max value of r is 255
+  if r >= 255:
+   setRed(p, 255)
+  else:
+   setRed(p, r)
+ return pic
+
+#Adds red "GAME OVER" text to the center of an image.
+def endText(pic, string):
+ x = (getWidth(pic)/2)-150
+ y = (getHeight(pic)/2)-15
+ s = makeStyle(sansSerif, italic+bold, 48)
+ addTextWithStyle(pic, x, y, string, s, red)
+ return pic
