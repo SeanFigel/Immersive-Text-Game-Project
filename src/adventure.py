@@ -1,7 +1,7 @@
 # Adventure Game Updates
 # This is the updated adventure game which asks for user input to move east, west, south, or north
 def adventure():
-  global name, validMoves, validActions, sounds, messages
+  global name, validMoves, validActions, sounds, messages, inven
   # Room sounds
   sounds = getSoundsDict()
   ###play(sounds["start"])
@@ -18,6 +18,8 @@ def adventure():
     return
   # Room messages
   messages = getMessagesDict()
+  # Inventory
+  inven = {"flashlight": false, "batteries": false, "keyHouse": false, "radio": false, "keyDinner": false}
   # default values
   validMoves = ["north","south","east","west","left","right","n","s","e","w","l","r"]
   validActions = ["hide","jump","crawl","wait","h","j","c","w"]
@@ -40,6 +42,8 @@ def adventure():
         break
       elif move == "help":
         showInformation(messages["help"])
+      elif move in ["i","inventory"]:
+        getInventory()
   if result == "quit":
     showInformation(messages["quitGame"])
   # End sounds
@@ -56,26 +60,33 @@ def firstStage():
   showInformation(messages["intro"])
   stopPlaying(sounds["intro"])
   move = ""
-  flashlight = false #item
-  batteries = false #item
-  key = false #item
+  inven["flashlight"] = false #item
+  inven["batteries"] = false #item
+  inven["keyHouse"] = false #item
   location = 3 # bedroom
   while move != "exit":
     # Check if user asked for help
     if move == "help":
       showInformation(messages["help"])
+    # Show Inventory
+    if move in ["i","inventory"]:
+      getInventory()
     # Closet
     if location == 1:
       play(sounds["closet"])
       showInformation(messages["closet"])
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["closet"])
-      if flashlight == false:
-        flashlight = askFlashlight()
-        if flashlight == "exit":
+      if inven["flashlight"] == false:
+        response = askFlashlight()
+        if response == "true":
+          inven["flashlight"] = true
+        elif response == "false":
+          inven["flashlight"] = false
+        if response == "exit":
           break
-        if flashlight == "help":
-          flashlight = false
+        if response == "help":
+          inven["flashlight"] = false
           move = "help"
           continue
       move = askMove("n", "You can move north.")
@@ -125,12 +136,16 @@ def firstStage():
       showInformation(messages["bathroom"])
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["bathroom"])
-      if key == false:
-        key = askKey()
-        if key == "exit":
+      if inven["keyHouse"] == false:
+        response = askKey()
+        if response == "true":
+          inven["keyHouse"] = true
+        elif response == "false":
+          inven["keyHouse"] = false
+        if response == "exit":
           break
-        if key == "help":
-          key = false
+        if response == "help":
+          inven["keyHouse"] = false
           move = "help"
           continue
       move = askMove("w", "You can move west.")
@@ -159,7 +174,7 @@ def firstStage():
         play(sounds["lockedDoor"])
         showInformation("\n~The door is locked.~")
         stopPlaying(sounds["lockedDoor"])
-        if key:
+        if inven["keyHouse"]:
           if(askUseKey()):
             play(sounds["useKey"])
             showInformation("You place the key in the lock. You struggle a bit...It works, you opened the door!")
@@ -229,12 +244,16 @@ def firstStage():
       showInformation(messages["archway"])
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["archway"])
-      if batteries == false:
-        batteries = askBatteries()
-        if batteries == "exit":
+      if inven["batteries"] == false:
+        response = askBatteries()
+        if response == "true":
+          inven["key"] = true
+        elif response == "false":
+          inven["key"] = false
+        if response == "exit":
           break
-        if batteries == "help":
-          batteries = false
+        if response == "help":
+          inven["batteries"] = false
           move = "help"
           continue
       move = askMove("w", "You can move west.")
@@ -244,7 +263,7 @@ def firstStage():
     # Wooden Doors
     elif location == 13:
       move = "exit"
-      if flashlight == true and batteries == true:
+      if inven["flashlight"] == true and inven["batteries"] == true:
         if(askUseFL()):
           play(sounds["woodenDoors"])
           showInformation(messages["win"]) # print wins by escaping
@@ -262,14 +281,17 @@ def firstStage():
 
 #--------------------------------------------------------------------------------------------------------Left Stage
 def leftStage():
-  showInformation("leftIntro")
-  showInformation("leftIntro2")
+  showInformation(messages["leftIntro"])
+  showInformation(messages["leftIntro2"])
   move = ""
   location = 1 # Diner
   while move != "exit":
     # Check if user asked for help
     if move == "help":
       showInformation(messages["help"])
+    # Show Inventory
+    if move in ["i","inventory"]:
+      getInventory()
     # Back to Car
     if location == 0:
       showInformation(messages["backToCar"])
@@ -346,6 +368,9 @@ def rightStage():
     # Check if user asked for help
     if move == "help":
       showInformation(messages["help"])
+    # Show Inventory
+    if move in ["i","inventory"]:
+      getInventory()
     # Entryway
     if location == 0:
       showInformation(messages["entryway"])
@@ -417,9 +442,9 @@ def askFlashlight():
       userInput = "exit"
     if userInput in ["yes", "y"]:
       showInformation("~~You now have a flashlight!~~")
-      return true
+      return "true"
     if userInput in ["no", "n"]:
-      return false
+      return "false"
     if userInput == "exit":
       return "exit"
     if userInput == "help":
@@ -569,6 +594,8 @@ def askMove(directions, text):
       userInput = userInput[0]
       if userInput in directions:
         return userInput
+    if userInput in ["i","inventory"]:
+      return userInput
     if userInput != "help" and userInput != "exit":
       showInformation("That is not an option " + name + ".[If you're having trouble? type: help]")
   return userInput
@@ -587,6 +614,8 @@ def askActions(actions, text):
       userInput = userInput[0]
       if userInput in actions:
         return userInput
+    if userInput in ["i","inventory"]:
+      return userInput
     if userInput != "help" and userInput != "exit":
       showInformation("That is not an option " + name + ".[If you're having trouble? type: help]")
   return userInput
@@ -878,3 +907,140 @@ def getSoundsDict():
     "foyer":foyer, "brokenLose":brokenLose, "archway":archway, "archwayFoundBatteries":archwayFoundBatteries, "intro":intro,
     "woodenDoors":woodenDoors, "woodenLose":woodenLose}
   return dict
+  
+  #------------------------------------------------------------------------------------------------Images
+  #----Image Code----
+#Darkens all color values in a picture.
+def darken(originalPic):
+ pic = copy(originalPic)
+ pixels = getPixels(pic)
+ for p in pixels:
+  darkColor = makeDarker(getColor(p))
+  setColor(p, darkColor)
+ return pic
+
+#Lightens all color values in a circle in the center of an image.
+def flashLight(originalPic):
+ pic = copy(originalPic)
+ circleRadius = min(getHeight(pic), getWidth(pic)) / 2
+ for x in range(0, getWidth(pic)):
+  for y in range(0, getHeight(pic)):
+   #Uses a circle function to detect pixels within a circle of the desired size, then lightens those pixels.
+   if (x-(getWidth(pic)/2))**2 + (y-(getHeight(pic)/2))**2 <= (circleRadius-25)**2:
+    p = getPixel(pic, x, y)
+    lightColor = makeLighter(getColor(p))
+    setColor(p, lightColor)
+ return pic
+
+#Blurs an image, makes it redder, and adds the text "GAME OVER" to the center.
+def gameOver(pic):
+ picCopy = copy(pic)
+ gameOverPic = moveAndFade(pic, picCopy, 10, factor=4)
+ gameOverPic = moreRed(gameOverPic, 50)
+ gameOverPic = endText(gameOverPic, "GAME OVER")
+ return gameOverPic
+ 
+def moveAndFade(source, target, distance = 0, moveLeft = false, factor=1):
+  targetW = getWidth(target)
+  targetH = getHeight(target)
+  sourceW = getWidth(source)
+  sourceH = getHeight(source)
+  if(distance > targetW):
+    return target    
+  xMax = min(distance + sourceW, targetW)
+  yMax = min(sourceH, targetH)
+  fadeSize = 50
+  x = 0
+  for destX in range(distance, xMax):
+    y = 0
+    for destY in range(0, yMax):
+      if(moveLeft):
+        p = getPixel(source, xMax-x-1, yMax-y-1)
+        destPixel = getPixel(target, xMax-destX-1, yMax-destY-1)
+      else:
+        p = getPixel(source, x, y)
+        destPixel = getPixel(target, destX, destY)
+      
+      if(x<fadeSize*factor):
+        # Create a fade in effect
+        tempFactor = x-1
+        r = (tempFactor*getRed(p)+fadeSize*getRed(destPixel))/(fadeSize+tempFactor)
+        g = (tempFactor*getGreen(p)+fadeSize*getGreen(destPixel))/(fadeSize+tempFactor)
+        b = (tempFactor*getBlue(p)+fadeSize*getBlue(destPixel))/(fadeSize+tempFactor)
+      else:
+        # Copy Average, transparent effect
+        r = (factor*getRed(p)+getRed(destPixel))/(factor+1)
+        g = (factor*getGreen(p)+getGreen(destPixel))/(factor+1)
+        b = (factor*getBlue(p)+getBlue(destPixel))/(factor+1)
+      setColor(destPixel, makeColor(r,g,b))
+      y += 1
+    x += 1
+  return target
+
+#Makes a copy of a picture
+def copy(pic):
+  w = getWidth(pic)
+  h = getHeight(pic)
+  mypic = makeEmptyPicture(w, h)
+  for p in getPixels(pic):
+    x = getX(p)
+    y = getY(p)
+    setColor(getPixel(mypic, x, y), getColor(p))
+  return mypic
+
+#Increases red value of pixels by n%.
+def moreRed(pic, n):
+ #Set n to a decimal number appropriate for increase. (100 increased by 75% is 100*1.75)
+ n = (100+n) * 0.01
+ pixels = getPixels(pic)
+ for p in pixels:
+  r = getRed(p)
+  r = r * n
+  #Max value of r is 255
+  if r >= 255:
+   setRed(p, 255)
+  else:
+   setRed(p, r)
+ return pic
+
+#Adds red "GAME OVER" text to the center of an image.
+def endText(pic, string):
+ x = (getWidth(pic)/2)-150
+ y = (getHeight(pic)/2)-15
+ s = makeStyle(sansSerif, italic+bold, 48)
+ addTextWithStyle(pic, x, y, string, s, red)
+ return pic
+
+def getInventory():
+  global inven
+  message = "Inventory \n" 
+  allFalse = true
+  if inven["flashlight"] == true:
+    str = "\n A small handheld flashlight. Its light provides some slight comfort within the darkness. \n"
+    allFalse = false
+    message = message + str
+  
+  if inven["batteries"] == true:
+    str = "\n AA batteries. These seeme to be the correct size for a small flashlight."
+    allFalse = false
+    message = message + str
+  
+  if inven["keyHouse"] == true:
+    str = "\n \n A small key found in the bathtub. It seems like it might fit a door to a bedroom. \n"
+    allFalse = false
+    message = message + str
+    
+  if inven["keyDinner"] == true:
+    str = "\n A small key found on a table in the diner. It is very small and seems to be for some type of metal door. \n"
+    allFalse = false
+    message = message + atr
+    
+  if inven["radio"] == true:
+    str = "\n A small red radio. There does not seems to be a way to open the radio to check the batteries. Oddly enough it still seems to make nosies from time to time. \n"
+    allFalse = false
+    message = message + str
+    
+  if allFalse == true:
+    str = "\n You do not have anything in your pockets besides lint. \n"
+    message = message + str
+  showInformation(message)
