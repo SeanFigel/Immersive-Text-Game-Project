@@ -221,13 +221,13 @@ def firstStage():
     elif location == 5:
       if inven["keyHouse"] == true:
         if flashlightOn:
-          copyInto(flashLightFilter(images["bathroomTook"]), image, 0, 0)
+          copyInto(flashlightFilter(images["bathroomTook"]), image, 0, 0)
         else:
           copyInto(images["bathroomTook"], image, 0, 0)
         repaint(image)
       else:
         if flashlightOn:
-          copyInto(flashLightFilter(images["bathroom"]), image, 0, 0)
+          copyInto(flashlightFilter(images["bathroom"]), image, 0, 0)
         else:
           copyInto(images["bathroom"], image, 0, 0)
         repaint(image)
