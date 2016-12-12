@@ -1,7 +1,72 @@
+# ---------Change getSoundsDict and getImagesDict file paths---------
+def getSoundsDict():
+  # Room sounds
+  start = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\Long_Note_Three.wav")
+  openClose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\openClose.wav")
+  intro = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\intro.wav")
+  bedroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroom.wav")
+  bedroomSouth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroomSouth.wav")
+  bedroomNorth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroomNorth.wav")
+  closet = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\closet.wav")
+  closetFoundFL = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\closetFoundFL.wav")
+  hallSouth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\hallSouth.wav")
+  hallNorth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\hallNorth.wav")
+  lockedDoor = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\lockedDoor.wav")
+  lock = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\lock.wav")
+  useKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\useKey.wav")
+  bathroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroom.wav")
+  bathroomFoundKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroomFoundKey.wav")
+  bathroomGotKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroomGotKey.wav")
+  masterBedroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\masterBedroom.wav")
+  stairs = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\stairs.wav")
+  foyer = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\foyer.wav")
+  balcony = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\balcony.wav")
+  balconyClose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\balconyClose.wav")
+  archway = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\archway.wav")
+  archwayFoundBatteries = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\archwayFoundBatteries.wav")
+  brokenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\brokenLose.wav")
+  woodenDoors = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenDoors.wav")
+  woodenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenLose.wav")
+  dict = {"start":start, "openClose": openClose, "closet":closet, "closetFoundFL":closetFoundFL, "bedroomSouth":bedroomSouth,
+    "bedroom":bedroom, "bedroomNorth":bedroomNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey,
+    "bathroomGotKey": bathroomGotKey, "hallSouth":hallSouth, "hallNorth":hallNorth, "lockedDoor":lockedDoor,"lock":lock,
+    "useKey":useKey,"masterBedroom":masterBedroom, "balcony":balcony, "balconyClose":balconyClose, "stairs":stairs,
+    "foyer":foyer, "brokenLose":brokenLose, "archway":archway, "archwayFoundBatteries":archwayFoundBatteries, "intro":intro,
+    "woodenDoors":woodenDoors, "woodenLose":woodenLose}
+  return dict
+ 
+def getImagesDict():
+  # Room Images
+  bedroom = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bedroom.jpg")
+  bedroomSouth = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bedroomSouth.jpg")
+  bedroomNorth = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bedroomNorth.jpg")
+  closet = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\closet.jpg")
+  closetTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\closetTook.jpg")
+  closetFoundFL = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\closetFoundFL.jpg")
+  hallSouth = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\hallSouth.jpg")
+  hallNorth = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\hallNorth.jpg")
+  bathroom = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bathroom.jpg")
+  bathroomTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bathroomTook.jpg")
+  bathroomFoundKey = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bathroomFoundKey.jpg")
+  bathroomFoundKeyTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bathroomFoundKeyTook.jpg")
+  masterBedroom = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\masterBedroom.jpg")
+  foyer = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\foyer.jpg")
+  foyerTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\foyerTook.jpg")
+  balcony = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\balcony.jpg")
+  #archway = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archway.jpg")
+  #archwayFoundBatteries = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archwayFoundBatteries.jpg")
+  #woodenDoors = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\woodenDoors.jpg")
+  dict = {"bedroom":bedroom, "bedroomSouth":bedroomSouth, "bathroomTook":bathroomTook, "bedroomNorth":bedroomNorth,
+    "bathroomFoundKeyTook":bathroomFoundKeyTook, "closet":closet, "closetTook":closetTook, "closetFoundFL":closetFoundFL,
+    "hallSouth":hallSouth, "hallNorth":hallNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey, "masterBedroom":masterBedroom,
+    "foyer":foyer, "foyerTook":foyerTook,"balcony":balcony}
+  return dict
+  
+#-------------------------------------------Game Code-------------------------------------------
 # Adventure Game Updates
 # This is the updated adventure game which asks for user input to move east, west, south, or north
 def adventure():
-  global name, validMoves, validActions, sounds, messages, inven
+  global name, validMoves, validActions, sounds, messages, images, inven, blackPic
   # Room sounds
   sounds = getSoundsDict()
   ###play(sounds["start"])
@@ -18,11 +83,14 @@ def adventure():
     return
   # Room messages
   messages = getMessagesDict()
+  # Room messages
+  images = getImagesDict()
   # Inventory
   inven = {"flashlight": false, "batteries": false, "keyHouse": false, "radio": false, "keyDinner": false}
   # default values
   validMoves = ["north","south","east","west","left","right","n","s","e","w","l","r"]
   validActions = ["hide","jump","crawl","wait","h","j","c","w"]
+  blackPic = makeEmptyPicture(getWidth(images["bedroom"]), getHeight(images["bedroom"]), black)
   # Begin first stage
   result = firstStage()
   # Continue to next stage
@@ -30,7 +98,7 @@ def adventure():
     move = ""
     while move!="exit":
       # Begin next level
-      showInformation("[Final Stage]")
+      showInformation("[Next Stage]")
       showInformation(messages["startNext"])
       # Ask left/right
       move = askMove("lr", "You can go left or right.")
@@ -54,17 +122,22 @@ def adventure():
         continue
     
 def firstStage():
+  global inven
+  image = blackPic
   # Begin game
   showInformation(messages["help"])
   play(sounds["intro"])
   showInformation(messages["intro"])
   stopPlaying(sounds["intro"])
   move = ""
-  inven["flashlight"] = false #item
-  inven["batteries"] = false #item
-  inven["keyHouse"] = false #item
+  flashlightOn = false
   location = 3 # bedroom
   while move != "exit":
+    # Check flashlight
+    if inven["flashlight"] == true and inven["batteries"] == true:
+      flashlightOn = true
+    else:
+      flashlightOn = false
     # Check if user asked for help
     if move == "help":
       showInformation(messages["help"])
@@ -73,13 +146,21 @@ def firstStage():
       getInventory()
     # Closet
     if location == 1:
+      if inven["flashlight"] == true:
+        copyInto(images["closetTook"], image, 0, 0)
+        repaint(image)
+      else:
+        copyInto(images["closet"], image, 0, 0)
+        repaint(image)
       play(sounds["closet"])
       showInformation(messages["closet"])
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["closet"])
       if inven["flashlight"] == false:
-        response = askFlashlight()
+        response = askFlashlight(image)
         if response == "true":
+          copyInto(images["closetTook"], image, 0, 0)
+          repaint(image)
           inven["flashlight"] = true
         elif response == "false":
           inven["flashlight"] = false
@@ -95,6 +176,8 @@ def firstStage():
         location += 1
     # Bedroom South
     elif location == 2:
+      copyInto(images["bedroomSouth"], image, 0, 0)
+      repaint(image)
       play(sounds["bedroomSouth"])
       showInformation(messages["bedroomSouth"])
       stopPlaying(sounds["bedroomSouth"])
@@ -107,6 +190,8 @@ def firstStage():
         location -= 1
     # Bedroom
     elif location == 3:
+      copyInto(images["bedroom"], image, 0, 0)
+      repaint(image)
       play(sounds["bedroom"])
       showInformation(messages["bedroom"])
       stopPlaying(sounds["bedroom"])
@@ -117,6 +202,8 @@ def firstStage():
         location -= 1
     # Bedroom North
     elif location == 4:
+      copyInto(images["bedroomNorth"], image, 0, 0)
+      repaint(image)
       play(sounds["bedroomNorth"])
       showInformation(messages["bedroomNorth"])
       stopPlaying(sounds["bedroomNorth"])
@@ -132,13 +219,29 @@ def firstStage():
         location += 1
     # Bathroom
     elif location == 5:
+      if inven["keyHouse"] == true:
+        if flashlightOn:
+          copyInto(flashLightFilter(images["bathroomTook"]), image, 0, 0)
+        else:
+          copyInto(images["bathroomTook"], image, 0, 0)
+        repaint(image)
+      else:
+        if flashlightOn:
+          copyInto(flashLightFilter(images["bathroom"]), image, 0, 0)
+        else:
+          copyInto(images["bathroom"], image, 0, 0)
+        repaint(image)
       play(sounds["bathroom"])
       showInformation(messages["bathroom"])
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["bathroom"])
       if inven["keyHouse"] == false:
+        copyInto(images["bathroomFoundKey"], image, 0, 0)
+        repaint(image)
         response = askKey()
         if response == "true":
+          copyInto(images["bathroomFoundKeyTook"], image, 0, 0)
+          repaint(image)
           inven["keyHouse"] = true
         elif response == "false":
           inven["keyHouse"] = false
@@ -154,6 +257,11 @@ def firstStage():
         location -= 1
     # Hall South
     elif location == 6:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["hallSouth"]), image, 0, 0)
+      else:
+        copyInto(images["hallSouth"], image, 0, 0)
+      repaint(image)
       play(sounds["hallSouth"])
       showInformation(messages["hallSouth"])
       stopPlaying(sounds["openClose"])
@@ -165,6 +273,11 @@ def firstStage():
         location -= 2
     # Hall North
     elif location == 7:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["hallNorth"]), image, 0, 0)
+      else:
+        copyInto(images["hallNorth"], image, 0, 0)
+      repaint(image)
       play(sounds["hallNorth"])
       showInformation(messages["hallNorth"])
       stopPlaying(sounds["openClose"])
@@ -174,7 +287,7 @@ def firstStage():
         play(sounds["lockedDoor"])
         showInformation("\n~The door is locked.~")
         stopPlaying(sounds["lockedDoor"])
-        if inven["keyHouse"]:
+        if inven["keyHouse"]==true:
           if(askUseKey()):
             play(sounds["useKey"])
             showInformation("You place the key in the lock. You struggle a bit...It works, you opened the door!")
@@ -189,6 +302,11 @@ def firstStage():
         location += 3
     # Master Bedroom (secret room)
     elif location == 8:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["masterBedroom"]), image, 0, 0)
+      else:
+        copyInto(images["masterBedroom"], image, 0, 0)
+      repaint(image)
       play(sounds["masterBedroom"])
       showInformation(messages["masterBedroom"])
       stopPlaying(sounds["balconyClose"])
@@ -204,6 +322,11 @@ def firstStage():
         location += 1
     # Balcony
     elif location == 9:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["balcony"]), image, 0, 0)
+      else:
+        copyInto(images["balcony"], image, 0, 0)
+      repaint(image)
       play(sounds["balcony"])
       showInformation(messages["balcony"]) # Clue
       stopPlaying(sounds["balcony"])
@@ -213,6 +336,18 @@ def firstStage():
         location -= 1
     # Stairs/Foyer
     elif location == 10:
+      if inven["batteries"] == true:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["foyerTook"]), image, 0, 0)
+        else:
+          copyInto(images["foyerTook"], image, 0, 0)
+        repaint(image)
+      else:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["foyer"]), image, 0, 0)
+        else:
+          copyInto(images["foyer"], image, 0, 0)
+        repaint(image)
       play(sounds["foyer"])
       showInformation(messages["foyer"])
       stopPlaying(sounds["openClose"])
@@ -227,7 +362,6 @@ def firstStage():
         stopPlaying(sounds["stairs"])
         location -= 3
       elif move == "e":
-        play(sounds["openClose"])
         location += 2
       elif move == "w":
         location += 1
@@ -236,6 +370,8 @@ def firstStage():
       play(sounds["brokenLose"])
       showInformation(messages["brokenLose"]) # print loses chased and attacked in the dark
       stopPlaying(sounds["brokenLose"])
+      copyInto(gameOver(image), image, 0, 0)
+      repaint(image)
       showInformation(messages["loser"])
       return "lost"
     # Archway
@@ -247,9 +383,11 @@ def firstStage():
       if inven["batteries"] == false:
         response = askBatteries()
         if response == "true":
-          inven["key"] = true
+          copyInto(images["foyerTook"], image, 0, 0)
+          repaint(image)
+          inven["batteries"] = true
         elif response == "false":
-          inven["key"] = false
+          inven["batteries"] = false
         if response == "exit":
           break
         if response == "help":
@@ -258,7 +396,6 @@ def firstStage():
           continue
       move = askMove("w", "You can move west.")
       if move == "w":
-        play(sounds["openClose"])
         location -= 2
     # Wooden Doors
     elif location == 13:
@@ -275,6 +412,8 @@ def firstStage():
       showInformation(messages["lose"]) # print loses attacked in the dark
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["woodenLose"])
+      copyInto(gameOver(image), image, 0, 0)
+      repaint(image)
       showInformation(messages["loser"])
       return "lost"
   return "quit"
@@ -295,6 +434,8 @@ def leftStage():
     # Back to Car
     if location == 0:
       showInformation(messages["backToCar"])
+      copyInto(gameOver(image), image, 0, 0)
+      repaint(image)
       showInformation(messages["loser"])
       return "lost"
     # Diner
@@ -354,7 +495,10 @@ def leftStage():
       return "won"
     # Lose Radio
     elif location == 7:
+      showInformation(messages["radioSound"])
       showInformation(messages["loseRadio"])
+      copyInto(gameOver(image), image, 0, 0)
+      repaint(image)
       showInformation(messages["loser"])
       return "lost"
 
@@ -415,6 +559,8 @@ def rightStage():
     # Jump
     elif location == 5:
       showInformation(messages["jump"])
+      copyInto(gameOver(image), image, 0, 0)
+      repaint(image)
       showInformation(messages["loser"])
       return "lost"
     # Hide
@@ -430,7 +576,9 @@ def rightStage():
       return "lost"
       
 # This function tells the user there is a flashlight and asks if the user will take it
-def askFlashlight():
+def askFlashlight(image):
+  copyInto(images["closetFoundFL"], image, 0, 0)
+  repaint(image)
   play(sounds["closetFoundFL"])
   showInformation("You open the bag and notice a flashlight. You grab it but it has no batteries.")
   stopPlaying(sounds["closetFoundFL"])
@@ -466,9 +614,9 @@ def askKey():
       play(sounds["bathroomGotKey"])
       showInformation("~~You now have a key!~~")
       stopPlaying(sounds["bathroomGotKey"])
-      return true
+      return "true"
     if userInput in ["no", "n"]:
-      return false
+      return "false"
     if userInput == "exit":
       return "exit"
     if userInput == "help":
@@ -488,9 +636,9 @@ def askBatteries():
       userInput = "exit"
     if userInput in ["yes", "y"]:
       showInformation("~~You now have batteries!~~")
-      return true
+      return "true"
     if userInput in ["no", "n"]:
-      return false
+      return "false"
     if userInput == "exit":
       return "exit"
     if userInput == "help":
@@ -673,7 +821,7 @@ def getMessagesDict():
     + "To your right (east), a large archway with nothing but darkness beyond it. "\
     + "Behind you (south), are the stairs."
   balcony = "\n-----Balcony-----\n"\
-    + "A cold wind blows past as you stand out on the balcony. Below you is a unkept and overgrown garden. "\
+    + "A cold wind blows past as you stand out on the balcony. Below you is an unkept and overgrown garden. "\
     + "Off in the distance you can make out a forest of pine trees. Something else catches your eye. "\
     + "You notice three burly men standing outside the west entrance of the house."
   archway = "\n-----Archway-----\n"\
@@ -690,8 +838,7 @@ def getMessagesDict():
   win = "\n-----Outside to the North-----\n"\
     + "You turn on the flashlight and are able to see a man standing to your right. "\
     + "At this moment the man runs towards you, so you run away. "\
-    + "You notice a car with its engine running. You jump inside the car and drive away. "\
-    + "Congratulations, %s. You made it out safe!" % name
+    + "You notice a car with its engine running. You jump inside the car and drive away."
   startNext = "\n-----Driving Car-----\n"\
     +"Driving away from the house you see a fork in the road. You can continue to "\
     +"the right towards the forest or the left towards a lake."
@@ -752,9 +899,9 @@ def getMessagesDict():
   policeCar = "\n-----Police Car-----\n"\
     +"You walk up to the police car to investigate and notice that the window is broken in the back door "\
     +"windows. Peering into the car you notice a few things on the seat of the car. There seems to be a "\
-    +"notepad and you also can search the glove box."\
-    +"You pick up the notepad and written on the notepad is the numbers 4825."#Would you like to pick up the notepad?
-    #Add notepad to inventory.
+    +"notepad. "\
+    +"You reach and pick up the notepad. Written on the notepad is the number 4825."#Would you like to pick up the notepad?
+    #Add notepad to inventory. (you also can search the glove box)
     #Glove Box
     ##+"Looking into the glove box you find something that looks like a gun, but it turns out to be a stun gun. "
     #Would you like to take the stun gun?
@@ -766,7 +913,7 @@ def getMessagesDict():
     #Prompt the user for code. Answer is on the notepad.
   wrongCode = "The keypad makes a buzzing noise and falls silent. The light continues to stay red. Seems "\
     +"like the code was incorrect. "
-    #(west – see police, north - radio)
+    #(west - see police, north - radio)
   correctCode = "The keypad light turns green and you can hear a faint click as the door opens. "
   policeStation = "\n-----Police Station-----\n"\
     +"Walking into the police station, you quickly close the door behind you and make sure that it locks "\
@@ -841,18 +988,18 @@ def getMessagesDict():
     #"You can crawl or wait."
   crawl = "You attempt to crawl through the small opening but as you move forward the logs around you shift "\
     +"slightly and pin you in. You are not completely trapped. As you struggle to wiggle yourself free you see "\
-    +"some motion. Looking closer you see that it is the three men that you had escaped from earlier. They look "\
-    +"down upon you and one of them balls up his hand. He then swings a fist at you and you are knocked unconscious."
+    +"some motion. Looking closer you see it is a man dressed similar to the guy who chased you earlier. He looked "\
+    +"down upon you and balls up his hand. He then swings a fist at you and you are knocked unconscious."
     #lose
   wait = "You wait and after some time you hear commotion around your log prison. As you listen you can hear that "\
-    +"it sounds like three men. It sounds like they are trying to dig you out. As they dig you out, you see that "\
-    +"they are the men that you escaped from earlier. One of the men swings a fist towards you and you are "\
+    +"it sounds like a man talking, definitely not English. It sounds like he is trying to dig you out. As he digs you out, you see that "\
+    +"he is dressed similar to the guy who chased you earlier. He swings a fist towards you and you are "\
     +"knocked unconscious."
     #lose
 
   quitGame = "\n~~%s has quit the game~~" % name
   loser = "Sorry %s, you lose." % name
-  winner = "Congratulations %s, you made it out safe!" % name
+  winner = "Congratulations %s, you have completed the game!" % name
   
   dict = {"closet":closet, "bedroomSouth":bedroomSouth, "bedroom":bedroom, "bedroomNorth":bedroomNorth, "bathroom":bathroom,
     "hallSouth":hallSouth, "hallNorth":hallNorth, "masterBedroom":masterBedroom, "balcony":balcony, "foyer":foyer, "brokenLose":brokenLose,
@@ -863,49 +1010,6 @@ def getMessagesDict():
     "loseRadio":loseRadio, "rightIntro":rightIntro, "rightIntro2":rightIntro2, "entryway":entryway, "factory":factory,
     "supplyCloset":supplyCloset, "bathroomFactory":bathroomFactory, "outside":outside, "logs":logs, "jump":jump,
     "hide":hide, "crawl":crawl, "wait":wait}
-  return dict
-
-def getSound():
-  """ Gets a sound from a file
-  
-  Returns the sound of the file selected
-  """
-  return makeSound(pickAFile())
-  
-def getSoundsDict():
-  # Room sounds
-  start = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\Long_Note_Three.wav")
-  openClose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\openClose.wav")
-  intro = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\intro.wav")
-  bedroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroom.wav")
-  bedroomSouth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroomSouth.wav")
-  bedroomNorth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bedroomNorth.wav")
-  closet = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\closet.wav")
-  closetFoundFL = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\closetFoundFL.wav")
-  hallSouth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\hallSouth.wav")
-  hallNorth = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\hallNorth.wav")
-  lockedDoor = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\lockedDoor.wav")
-  lock = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\lock.wav")
-  useKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\useKey.wav")
-  bathroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroom.wav")
-  bathroomFoundKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroomFoundKey.wav")
-  bathroomGotKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\bathroomGotKey.wav")
-  masterBedroom = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\masterBedroom.wav")
-  stairs = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\stairs.wav")
-  foyer = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\foyer.wav")
-  balcony = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\balcony.wav")
-  balconyClose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\balconyClose.wav")
-  archway = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\archway.wav")
-  archwayFoundBatteries = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\archwayFoundBatteries.wav")
-  brokenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\brokenLose.wav")
-  woodenDoors = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenDoors.wav")
-  woodenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenLose.wav")
-  dict = {"start":start, "openClose": openClose, "closet":closet, "closetFoundFL":closetFoundFL, "bedroomSouth":bedroomSouth,
-    "bedroom":bedroom, "bedroomNorth":bedroomNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey,
-    "bathroomGotKey": bathroomGotKey, "hallSouth":hallSouth, "hallNorth":hallNorth, "lockedDoor":lockedDoor,"lock":lock,
-    "useKey":useKey,"masterBedroom":masterBedroom, "balcony":balcony, "balconyClose":balconyClose, "stairs":stairs,
-    "foyer":foyer, "brokenLose":brokenLose, "archway":archway, "archwayFoundBatteries":archwayFoundBatteries, "intro":intro,
-    "woodenDoors":woodenDoors, "woodenLose":woodenLose}
   return dict
   
   #------------------------------------------------------------------------------------------------Images
@@ -920,7 +1024,7 @@ def darken(originalPic):
  return pic
 
 #Lightens all color values in a circle in the center of an image.
-def flashLight(originalPic):
+def flashlightFilter(originalPic):
  pic = copy(originalPic)
  circleRadius = min(getHeight(pic), getWidth(pic)) / 2
  for x in range(0, getWidth(pic)):
