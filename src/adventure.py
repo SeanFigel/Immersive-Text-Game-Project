@@ -27,12 +27,46 @@ def getSoundsDict():
   brokenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\brokenLose.wav")
   woodenDoors = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenDoors.wav")
   woodenLose = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\woodenLose.wav")
+  gameOver = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\gameOver.wav")
+  startNext = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\startNext.wav")
+  leftIntro = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\leftIntro.wav")
+  leftIntro2 = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\leftIntro2.wav")
+  diner = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\diner.wav")
+  backToCar = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\backToCar.wav")
+  radio = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\radio.wav")
+  keyDiner = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\keyDiner.wav")
+  keyDinerGotKey = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\keyDinerGotKey.wav")
+  #padlock
+  #sideStreet
+  #seePolice
+  #policeCar
+  #keypad
+  #wrongCode
+  #correctCode
+  #policeStation
+  #win2
+  #radioSound
+  #loseRadio
+  rightIntro = leftIntro
+  rightIntro2 = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\rightIntro2.wav")
+  #entryway
+  #factory
+  #supplyCloset
+  #bathroomFactory
+  #outside
+  #logs
+  #jump
+  #hide
+  #crawl
+  #wait
   dict = {"start":start, "openClose": openClose, "closet":closet, "closetFoundFL":closetFoundFL, "bedroomSouth":bedroomSouth,
     "bedroom":bedroom, "bedroomNorth":bedroomNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey,
     "bathroomGotKey": bathroomGotKey, "hallSouth":hallSouth, "hallNorth":hallNorth, "lockedDoor":lockedDoor,"lock":lock,
     "useKey":useKey,"masterBedroom":masterBedroom, "balcony":balcony, "balconyClose":balconyClose, "stairs":stairs,
     "foyer":foyer, "brokenLose":brokenLose, "archway":archway, "archwayFoundBatteries":archwayFoundBatteries, "intro":intro,
-    "woodenDoors":woodenDoors, "woodenLose":woodenLose}
+    "woodenDoors":woodenDoors, "woodenLose":woodenLose, "gameOver":gameOver, "startNext":startNext, "leftIntro":leftIntro,
+    "leftIntro2":leftIntro2, "diner":diner, "backToCar":backToCar, "radio":radio, "keyDiner":keyDiner, "keyDinerGotKey":keyDinerGotKey,
+    "rightIntro":rightIntro, "rightIntro2":rightIntro2}
   return dict
  
 def getImagesDict():
@@ -69,7 +103,7 @@ def adventure():
   global name, validMoves, validActions, sounds, messages, images, inven, blackPic
   # Room sounds
   sounds = getSoundsDict()
-  ###play(sounds["start"])
+  play(sounds["start"])
   # Ask name
   name = askName()
   if(name == "exit"):
@@ -86,27 +120,30 @@ def adventure():
   # Room messages
   images = getImagesDict()
   # Inventory
-  inven = {"flashlight": false, "batteries": false, "keyHouse": false, "radio": false, "keyDinner": false}
+  inven = {"flashlight": false, "batteries": false, "keyHouse": false, "radio": false, "keyDiner": false, "notepad":false}
   # default values
   validMoves = ["north","south","east","west","left","right","n","s","e","w","l","r"]
   validActions = ["hide","jump","crawl","wait","h","j","c","w"]
-  blackPic = makeEmptyPicture(getWidth(images["bedroom"]), getHeight(images["bedroom"]), black)
+  image = makeEmptyPicture(getWidth(images["bedroom"]), getHeight(images["bedroom"]), black)
   # Begin first stage
-  result = firstStage()
+  result = firstStage(image)
+  stopPlaying(sounds["start"])
   # Continue to next stage
   if result == "won":
     move = ""
     while move!="exit":
       # Begin next level
       showInformation("[Next Stage]")
+      play(sounds["startNext"])
       showInformation(messages["startNext"])
+      stopPlaying(sounds["startNext"])
       # Ask left/right
       move = askMove("lr", "You can go left or right.")
       if move == "l":
-        result = leftStage()
+        result = leftStage(image)
         break
       elif move == "r":
-        result = rightStage()
+        result = rightStage(image)
         break
       elif move == "help":
         showInformation(messages["help"])
@@ -121,9 +158,8 @@ def adventure():
       except:
         continue
     
-def firstStage():
+def firstStage(image):
   global inven
-  image = blackPic
   # Begin game
   showInformation(messages["help"])
   play(sounds["intro"])
@@ -157,18 +193,13 @@ def firstStage():
       stopPlaying(sounds["openClose"])
       stopPlaying(sounds["closet"])
       if inven["flashlight"] == false:
-        response = askFlashlight(image)
+        response = askFL(image)
         if response == "true":
           copyInto(images["closetTook"], image, 0, 0)
           repaint(image)
           inven["flashlight"] = true
-        elif response == "false":
-          inven["flashlight"] = false
-        if response == "exit":
-          break
-        if response == "help":
-          inven["flashlight"] = false
-          move = "help"
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
           continue
       move = askMove("n", "You can move north.")
       if move == "n":
@@ -221,13 +252,13 @@ def firstStage():
     elif location == 5:
       if inven["keyHouse"] == true:
         if flashlightOn:
-          copyInto(flashlightFilter(images["bathroomTook"]), image, 0, 0)
+          copyInto(flashLightFilter(images["bathroomTook"]), image, 0, 0)
         else:
           copyInto(images["bathroomTook"], image, 0, 0)
         repaint(image)
       else:
         if flashlightOn:
-          copyInto(flashlightFilter(images["bathroom"]), image, 0, 0)
+          copyInto(flashLightFilter(images["bathroom"]), image, 0, 0)
         else:
           copyInto(images["bathroom"], image, 0, 0)
         repaint(image)
@@ -243,13 +274,8 @@ def firstStage():
           copyInto(images["bathroomFoundKeyTook"], image, 0, 0)
           repaint(image)
           inven["keyHouse"] = true
-        elif response == "false":
-          inven["keyHouse"] = false
-        if response == "exit":
-          break
-        if response == "help":
-          inven["keyHouse"] = false
-          move = "help"
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
           continue
       move = askMove("w", "You can move west.")
       if move == "w":
@@ -288,11 +314,15 @@ def firstStage():
         showInformation("\n~The door is locked.~")
         stopPlaying(sounds["lockedDoor"])
         if inven["keyHouse"]==true:
-          if(askUseKey()):
+          response = askUseKey()
+          if response == "true":
             play(sounds["useKey"])
             showInformation("You place the key in the lock. You struggle a bit...It works, you opened the door!")
             stopPlaying(sounds["useKey"])
             location += 1
+          elif response in ["exit", "help", "i", "inventory"]:
+            move = response
+            continue
       elif move == "s":
         location -= 1
       elif move == "e":
@@ -371,8 +401,10 @@ def firstStage():
       showInformation(messages["brokenLose"]) # print loses chased and attacked in the dark
       stopPlaying(sounds["brokenLose"])
       copyInto(gameOver(image), image, 0, 0)
+      play(sounds["gameOver"])
       repaint(image)
       showInformation(messages["loser"])
+      stopPlaying(sounds["gameOver"])
       return "lost"
     # Archway
     elif location == 12:
@@ -386,13 +418,8 @@ def firstStage():
           copyInto(images["foyerTook"], image, 0, 0)
           repaint(image)
           inven["batteries"] = true
-        elif response == "false":
-          inven["batteries"] = false
-        if response == "exit":
-          break
-        if response == "help":
-          inven["batteries"] = false
-          move = "help"
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
           continue
       move = askMove("w", "You can move west.")
       if move == "w":
@@ -401,13 +428,17 @@ def firstStage():
     elif location == 13:
       move = "exit"
       if inven["flashlight"] == true and inven["batteries"] == true:
-        if(askUseFL()):
+        response = askUseFL()
+        if response == "true":
           play(sounds["woodenDoors"])
           showInformation(messages["win"]) # print wins by escaping
           stopPlaying(sounds["openClose"])
           stopPlaying(sounds["woodenDoors"])
-          showInformation(messages["winner"])
+          showInformation(messages["winnerHouse"])
           return "won"
+        elif response in ["exit", "help", "i", "inventory"]:
+          move = response
+          continue
       play(sounds["woodenLose"])
       showInformation(messages["lose"]) # print loses attacked in the dark
       stopPlaying(sounds["openClose"])
@@ -419,9 +450,15 @@ def firstStage():
   return "quit"
 
 #--------------------------------------------------------------------------------------------------------Left Stage
-def leftStage():
+def leftStage(image):
+  global inven
+  play(sounds["start"])
+  play(sounds["leftIntro"])
   showInformation(messages["leftIntro"])
+  stopPlaying(sounds["leftIntro"])
+  play(sounds["leftIntro2"])
   showInformation(messages["leftIntro2"])
+  stopPlaying(sounds["leftIntro2"])
   move = ""
   location = 1 # Diner
   while move != "exit":
@@ -433,14 +470,18 @@ def leftStage():
       getInventory()
     # Back to Car
     if location == 0:
+      play(sounds["backToCar"])
       showInformation(messages["backToCar"])
       copyInto(gameOver(image), image, 0, 0)
       repaint(image)
       showInformation(messages["loser"])
+      stopPlaying(sounds["backToCar"])
       return "lost"
     # Diner
     elif location == 1:
+      play(sounds["diner"])
       showInformation(messages["diner"])
+      stopPlaying(sounds["diner"])
       move = askMove("nsew", "You can move north, south, east, or west.")
       if move == "s":#backToCar
         location -= 1
@@ -450,16 +491,46 @@ def leftStage():
         location += 2
       elif move == "e":#sideStreet
         showInformation(messages["padlock"])
+        play(sounds["lock"])
+        showInformation("You make sure to lock the door before you leave the room.")
+        stopPlaying(sounds["lock"])
         location += 3
     # Key Diner
     elif location == 2:
-      showInformation(messages["keyDiner"])
+      play(sounds["keyDiner"])
+      if inven["keyDiner"] == true:
+        showInformation(messages["keyDinerTook"])
+      else:
+        showInformation(messages["keyDiner"])
+        stopPlaying(sounds["keyDiner"])
+        response = askKeyDiner()
+        if response == "true":
+          #copyInto(images["keyDinerTook"], image, 0, 0)
+          #repaint(image)
+          inven["keyDiner"] = true
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
+          continue
       move = askMove("e", "You can move East.")
       if move == "e":#diner
         location -= 1
     # Radio
     elif location == 3:
-      showInformation(messages["radio"])
+      play(sounds["radio"])
+      if inven["radio"] == true:
+        showInformation(messages["radioTook"])
+        stopPlaying(sounds["radio"])
+      else:
+        showInformation(messages["radio"])
+        stopPlaying(sounds["radio"])
+        response = askRadio()
+        if response == "true":
+          #copyInto(images["radioTook"], image, 0, 0)
+          #repaint(image)
+          inven["radio"] = true
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
+          continue
       move = askMove("s", "You can move south.")
       if move == "s":#diner
         location -= 2
@@ -473,25 +544,43 @@ def leftStage():
         location += 1
     # See Police
     elif location == 5:
-      showInformation(messages["seePolice"])
-      showInformation(messages["policeCar"])
+      #
+      if inven["notepad"] == true:
+        showInformation(messages["policeCarTook"])
+      else:
+        showInformation(messages["seePolice"])
+        showInformation(messages["policeCar"])
+        response = askNotepad()
+        if response == "true":
+          #copyInto(images["notepadTook"], image, 0, 0)
+          #repaint(image)
+          inven["notepad"] = true
+        if response in ["exit", "help", "i", "inventory"]:
+          move = response
+          continue
+        
       move = askMove("ew", "You can move east or west.")
       if move == "w":#sideStreet
         location -= 1
       elif move == "e":#keypad
         showInformation(messages["keypad"])
-        if askCode():
+        response = askCode()
+        if response == "true":
           showInformation(messages["correctCode"])
           location += 1 #policeStation
+        elif response in ["exit", "help", "i", "inventory"]:
+          move = response
+          continue
         else:
           showInformation(messages["wrongCode"])
           showInformation("You start heading back.")
-          location += 2 #loseRadio
+          if inven["radio"] == true:
+            location += 2 #loseRadio
     # Police Station
     elif location == 6:
       showInformation(messages["policeStation"])
       showInformation(messages["win2"])
-      showInformation(messages["winner"])
+      showInformation(messages["winnerDiner"])
       return "won"
     # Lose Radio
     elif location == 7:
@@ -503,9 +592,15 @@ def leftStage():
       return "lost"
 
 #--------------------------------------------------------------------------------------------------------Right Stage
-def rightStage():
+def rightStage(image):
+  global inven
+  play(sounds["start"])
+  play(sounds["rightIntro"])
   showInformation(messages["rightIntro"])
+  stopPlaying(sounds["rightIntro"])
+  play(sounds["rightIntro2"])
   showInformation(messages["rightIntro2"])
+  stopPlaying(sounds["rightIntro2"])
   move = ""
   location = 0 # Entryway
   while move != "exit":
@@ -576,7 +671,7 @@ def rightStage():
       return "lost"
       
 # This function tells the user there is a flashlight and asks if the user will take it
-def askFlashlight(image):
+def askFL(image):
   copyInto(images["closetFoundFL"], image, 0, 0)
   repaint(image)
   play(sounds["closetFoundFL"])
@@ -593,10 +688,8 @@ def askFlashlight(image):
       return "true"
     if userInput in ["no", "n"]:
       return "false"
-    if userInput == "exit":
-      return "exit"
-    if userInput == "help":
-      return "help"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
     showInformation("That's not a good answer " + name + ", you can either say yes or no.")
 
 # This function tells the user there is a key and asks if the user will pick it up
@@ -617,10 +710,27 @@ def askKey():
       return "true"
     if userInput in ["no", "n"]:
       return "false"
-    if userInput == "exit":
-      return "exit"
-    if userInput == "help":
-      return "help"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
+    showInformation("That's not a good answer " + name + ", you can either say yes or no.")
+
+# This function tells the user there is a key and asks if the user will pick it up
+def askKeyDiner():
+  while true:
+    userInput = requestString("Would you like to get the key?")
+    try:
+      userInput = userInput.lower()
+    except:
+      userInput = "exit"
+    if userInput in ["yes", "y"]:
+      play(sounds["keyDinerGotKey"])
+      showInformation("~~You now have a key!~~")
+      stopPlaying(sounds["keyDinerGotKey"])
+      return "true"
+    if userInput in ["no", "n"]:
+      return "false"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
     showInformation("That's not a good answer " + name + ", you can either say yes or no.")
 
 # This function tells the user there are batteries and asks if the user will pick them up
@@ -639,10 +749,44 @@ def askBatteries():
       return "true"
     if userInput in ["no", "n"]:
       return "false"
-    if userInput == "exit":
-      return "exit"
-    if userInput == "help":
-      return "help"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
+    showInformation("That's not a good answer " + name + ", you can either say yes or no.")
+
+# This function tells the user there is a red radio and asks if the user will take it
+def askRadio():
+  while true:
+    userInput = requestString("Would you like to take the red radio?")
+    try:
+      userInput = userInput.lower()
+    except:
+      userInput = "exit"
+    if userInput in ["yes", "y"]:
+      showInformation("~~You now have a red radio!~~")
+      return "true"
+    if userInput in ["no", "n"]:
+      return "false"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
+    showInformation("That's not a good answer " + name + ", you can either say yes or no.")
+
+# This function tells the user there is a notepad and asks if the user will take it
+def askNotepad():
+  while true:
+    userInput = requestString("You reach and pick up the notepad. Would you like to take it with you?")
+    try:
+      userInput = userInput.lower()
+    except:
+      showInformation("You put the notepad back.")
+      userInput = "exit"
+    if userInput in ["yes", "y"]:
+      showInformation("~~You now have a notepad!~~")
+      return "true"
+    showInformation("You put the notepad back.")
+    if userInput in ["no", "n"]:
+      return "false"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
     showInformation("That's not a good answer " + name + ", you can either say yes or no.")
 
 # This function asks the user if they would like to use the key if they found the key
@@ -654,31 +798,27 @@ def askUseKey():
     except:
       userInput = "exit"
     if userInput in ["yes", "y"]:
-      return true
+      return "true"
     if userInput in ["no", "n"]:
-      return false
-    if userInput == "exit":
-      return "exit"
-    if userInput == "help":
-      return "help"
+      return "false"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
     showInformation("That's not a good answer " + name + ", you can either say yes or no.")
 
 # This function asks the user if they would like to use the flashlight if they found it
 def askUseFL():
   while true:
-    userInput = requestString("It is incredibly dark out here, would you like to use your flashlight?")
+    userInput = requestString("Your flashlight switched off and it is incredibly dark out here. Would you like to turn the flashlight back on?")
     try:
       userInput = userInput.lower()
     except:
       userInput = "exit"
     if userInput in ["yes", "y"]:
-      return true
+      return "true"
     if userInput in ["no", "n"]:
-      return false
-    if userInput == "exit":
-      return "exit"
-    if userInput == "help":
-      return "help"
+      return "false"
+    if userInput in ["exit", "help", "i", "inventory"]:
+      return userInput
     showInformation("That's not a good answer " + name + ", you can either say yes or no.")
 
 # Asks the user for the their name.
@@ -702,12 +842,13 @@ def askName():
 def askCode():
   userInput = requestString("Please enter code:")
   try:
-      userInput = userInput.lower()
+    userInput = userInput.lower()
   except:
-      return false
+    return "exit"
   if userInput == "4825":
-    return true
-  return false
+    return "true"
+  else:
+    return userInput
 
 # Asks the user to go to the logs
 def askLogs():
@@ -772,9 +913,11 @@ def askActions(actions, text):
 def getMessagesDict():
   # Room messages
   help = "\n***Welcome to the house adventure %s***\n"%name\
-    + "The directions that you are allowed to move will be displayed for you once you enter into a room. "\
-    + "Directions that you can move in are north, south, east or west by typing the direction that you would like to go. "\
+    + "The directions that you are allowed to move will be displayed for you once you enter into a room "\
+    + "(e.g., north, south, east or west). You must choose by typing the direction that you would like to move. "\
+    + "In certain rooms, you may also be able to choose specified actions (e.g., jump, wait, hide). "\
     + "Typing help will display this explanation again. "\
+    + "Typing inventory will display any items you currently have in your inventory. "\
     + "Typing exit will exit the game."
   intro = "\nThere is a loud creak of what sounds like wood which causes you to stir from your sleep. "\
     + "As you open your eyes you realize that you are not in your familiar bedroom, in fact you are not even on your bed. "\
@@ -851,7 +994,7 @@ def getMessagesDict():
     +"avoiding the glaze to the inevitable you see the orange glowing fate of your future...empty. "\
     +"Now that your fate is settling into your mind you keep pursuing on the last fumes of hope "\
     +"which you cling onto. You are able to get down the road a few miles until there is a "\
-    +"clearing in the dense woods. the over towing cover from the trees disappear and you can "\
+    +"clearing in the dense woods. The over towing cover from the trees disappear and you can "\
     +"see the clearing mist the sparkling stars above you. This clearing in the woods turned out "\
     +"to be a nestled town for what seems to be made for the working class. Here in this town "\
     +"you see and post office with a town hall adjacent, a steeple from a church so tall it "\
@@ -860,9 +1003,9 @@ def getMessagesDict():
     +"You pull over the ever fainting car and walk into the diner, hoping to find some"\
     +"answers, or at least a sandwich."
   diner = "\n-----Diner-----\n"\
-    +"You press the creaking door open and see the checkered floor below your feet. "\
-    +"Feeling overwhelmed by the contrasting colored floor you look straight ahead (north). In front of you "\
-    +"is a cold bar top accompanied by a swiveling cushion chair. You look to the left (west) and more "\
+    +"You press the creaking door open and see the checkered floor below your feet. You are shocked that the "\
+    +"diner is abandoned. Feeling overwhelmed by the contrasting colored floor you look straight ahead (north). "\
+    +"In front of you is a cold bar top accompanied by a swiveling cushion chair. You look to the left (west) and more "\
     +"chairs and tables. To the right (east) you see an unlabeled door. There is no one to be seen and "\
     +"everything is covered in dust."
     #(north-radio, east-side street, west-key)
@@ -876,6 +1019,8 @@ def getMessagesDict():
     #ask player if they want to pick up radio
     #wiping off the dust from the old red radio you notice that the weight seems to be light. Turning the device around you notice that there are no batteries. In desperation you search in vain for replacements, but to no avail. You put the radio away. (south-diner)
     #"You can move south."
+  radioTook = "\n-----Diner North-----\n"\
+    +"Going behind the bar you search through the old items on the shelving. You can't find anything useful."
   keyDiner = "\n-----Diner West-----\n"\
     +"You start approaching the tables and notice that the plates have been set up for a meal never had. "\
     +"On one plate closest to the you, your flashlight is reflecting back towards you. Walking closer you "\
@@ -883,13 +1028,15 @@ def getMessagesDict():
     #(east-diner)
     #ask player if they want to pick up the key
     #"You can move east."
+  keyDinerTook = "\n-----Diner West-----\n"\
+    +"You start approaching the tables and notice that the plates have been set up for a meal never had. "
   padlock = "\n-----Diner East-----\n"\
     +"Heading towards the door you notice the cold metal framing on the imposing padlocked door. "\
     +"You try to open the door."
     #if player has key ask them if they want to use it
   sideStreet = "\n-----Side Street-----\n"\
     +"You feel the cold brisk air brushing against your face. You are outside on the side street "\
-    +"of the diner.\nThe fog has settled back down between the crevices of the buildings. Blanketing you "\
+    +"of the diner. The fog has settled back down between the crevices of the buildings. Blanketing you "\
     +"in cold awareness."
     #(west-diner, east-see police)
     #"You can move west or east."
@@ -899,13 +1046,16 @@ def getMessagesDict():
   policeCar = "\n-----Police Car-----\n"\
     +"You walk up to the police car to investigate and notice that the window is broken in the back door "\
     +"windows. Peering into the car you notice a few things on the seat of the car. There seems to be a "\
-    +"notepad. "\
-    +"You reach and pick up the notepad. Written on the notepad is the number 4825."#Would you like to pick up the notepad?
+    +"notepad. "
+    #Would you like to pick up the notepad?
     #Add notepad to inventory. (you also can search the glove box)
     #Glove Box
     ##+"Looking into the glove box you find something that looks like a gun, but it turns out to be a stun gun. "
     #Would you like to take the stun gun?
     #Continue down the street east (west-side street, east-far street)
+  policeCarTook = "\n-----Police Car-----\n"\
+    +"You walk up to the police car to investigate and notice that the window is broken in the back door "\
+    +"windows. Peering into the car you notice a few things on the seat of the car but nothing that gets your attention."
   keypad = "\n-----Keypad-----\n"\
     +"You continue to walk forward down the street and up ahead you see what looks to be a police "\
     +"station. You walk up to the door and find that the door is locked with what seems to be a keypad with "\
@@ -999,17 +1149,18 @@ def getMessagesDict():
 
   quitGame = "\n~~%s has quit the game~~" % name
   loser = "Sorry %s, you lose." % name
-  winner = "Congratulations %s, you have completed the game!" % name
+  winnerHouse = "Congratulations %s, you made it through the first stage!" % name
+  winnerDiner = "Congratulations %s, you have completed the game!" % name
   
   dict = {"closet":closet, "bedroomSouth":bedroomSouth, "bedroom":bedroom, "bedroomNorth":bedroomNorth, "bathroom":bathroom,
     "hallSouth":hallSouth, "hallNorth":hallNorth, "masterBedroom":masterBedroom, "balcony":balcony, "foyer":foyer, "brokenLose":brokenLose,
-    "archway":archway, "lose":lose, "win":win, "intro":intro, "help":help, "quitGame":quitGame, "loser":loser, "winner":winner,
-    "startNext":startNext, "leftIntro":leftIntro, "leftIntro2":leftIntro2, "diner":diner, "backToCar":backToCar, "radio":radio,
-    "keyDiner":keyDiner, "padlock":padlock, "sideStreet":sideStreet, "seePolice":seePolice, "policeCar":policeCar, "keypad":keypad,
-    "wrongCode":wrongCode, "correctCode":correctCode, "policeStation":policeStation, "win2":win2, "radioSound":radioSound,
+    "archway":archway, "lose":lose, "win":win, "intro":intro, "help":help, "startNext":startNext, "leftIntro":leftIntro,
+    "leftIntro2":leftIntro2, "diner":diner, "backToCar":backToCar, "radio":radio, "radioTook":radioTook, "keyDiner":keyDiner,
+    "padlock":padlock, "sideStreet":sideStreet, "seePolice":seePolice, "policeCar":policeCar, "policeCarTook":policeCarTook, "keypad":keypad,
+    "keyDinerTook":keyDinerTook, "wrongCode":wrongCode, "correctCode":correctCode, "policeStation":policeStation, "win2":win2, "radioSound":radioSound,
     "loseRadio":loseRadio, "rightIntro":rightIntro, "rightIntro2":rightIntro2, "entryway":entryway, "factory":factory,
     "supplyCloset":supplyCloset, "bathroomFactory":bathroomFactory, "outside":outside, "logs":logs, "jump":jump,
-    "hide":hide, "crawl":crawl, "wait":wait}
+    "hide":hide, "crawl":crawl, "wait":wait, "quitGame":quitGame, "loser":loser, "winnerHouse":winnerHouse, "winnerDiner":winnerDiner}
   return dict
   
   #------------------------------------------------------------------------------------------------Images
@@ -1134,13 +1285,18 @@ def getInventory():
     allFalse = false
     message = message + str
     
-  if inven["keyDinner"] == true:
+  if inven["keyDiner"] == true:
     str = "\n A small key found on a table in the diner. It is very small and seems to be for some type of metal door. \n"
     allFalse = false
     message = message + atr
     
   if inven["radio"] == true:
     str = "\n A small red radio. There does not seems to be a way to open the radio to check the batteries. Oddly enough it still seems to make nosies from time to time. \n"
+    allFalse = false
+    message = message + str
+    
+  if inven["notepad"] == true:
+    str = "\n A notepad. There are a few scribbles that are hard to read but you can clearly read the number 4825. \n"
     allFalse = false
     message = message + str
     
