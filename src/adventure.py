@@ -31,6 +31,7 @@ def getSoundsDict():
   startNext = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\startNext.wav")
   leftIntro = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\leftIntro.wav")
   leftIntro2 = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\leftIntro2.wav")
+  creakDiner = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\creakDiner.wav")
   diner = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\diner.wav")
   backToCar = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\backToCar.wav")
   radio = makeSound("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\sounds\\radio.wav")
@@ -65,7 +66,7 @@ def getSoundsDict():
     "useKey":useKey,"masterBedroom":masterBedroom, "balcony":balcony, "balconyClose":balconyClose, "stairs":stairs,
     "foyer":foyer, "brokenLose":brokenLose, "archway":archway, "archwayFoundBatteries":archwayFoundBatteries, "intro":intro,
     "woodenDoors":woodenDoors, "woodenLose":woodenLose, "gameOver":gameOver, "startNext":startNext, "leftIntro":leftIntro,
-    "leftIntro2":leftIntro2, "diner":diner, "backToCar":backToCar, "radio":radio, "keyDiner":keyDiner, "keyDinerGotKey":keyDinerGotKey,
+    "leftIntro2":leftIntro2, "creakDiner":creakDiner, "diner":diner, "backToCar":backToCar, "radio":radio, "keyDiner":keyDiner, "keyDinerGotKey":keyDinerGotKey,
     "rightIntro":rightIntro, "rightIntro2":rightIntro2}
   return dict
  
@@ -87,13 +88,46 @@ def getImagesDict():
   foyer = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\foyer.jpg")
   foyerTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\foyerTook.jpg")
   balcony = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\balcony.jpg")
-  #archway = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archway.jpg")
-  #archwayFoundBatteries = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archwayFoundBatteries.jpg")
+  archway = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archway.jpg")
+  archwayTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\archwayTook.jpg")
   #woodenDoors = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\woodenDoors.jpg")
+  backToCar = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\backToCar.jpg")
+  diner  = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\diner.jpg")
+  dinerTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\dinerTook.jpg")
+  keyDiner = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\keyDiner.jpg")
+  keyDinerTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\keyDinerTook.jpg")
+  keypad = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\keypad.jpg")
+  leftIntro2 = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\leftIntro2.jpg")
+  padlock = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\padlock.jpg")
+  policeCar = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\policeCar.jpg")
+  policeStation = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\policeStation.jpg")
+  sideStreet = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\sideStreet.jpg")
+  startNext = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\startNext.jpg")
+  radio = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\radio.jpg")
+  radioTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\radioTook.jpg")
+  bathroomFactory = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\bathroomFactory.jpg")
+  crawl = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\crawl.jpg")
+  entryway = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\entryway.jpg")
+  factory = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\factory.jpg")
+  hide = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\hide.jpg")
+  jump = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\jump.jpg")
+  logs = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\logs.jpg")
+  outside = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\outside.jpg")
+  policeStation = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\policeStation.jpg")
+  supplyCloset = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\supplyCloset.jpg")
+  supplyClosetTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\supplyClosetTook.jpg")
+  wait = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\wait.jpg")
+  rightIntro2 = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\rightIntro2.jpg")
   dict = {"bedroom":bedroom, "bedroomSouth":bedroomSouth, "bathroomTook":bathroomTook, "bedroomNorth":bedroomNorth,
     "bathroomFoundKeyTook":bathroomFoundKeyTook, "closet":closet, "closetTook":closetTook, "closetFoundFL":closetFoundFL,
     "hallSouth":hallSouth, "hallNorth":hallNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey, "masterBedroom":masterBedroom,
-    "foyer":foyer, "foyerTook":foyerTook,"balcony":balcony}
+    "foyer":foyer, "foyerTook":foyerTook,"balcony":balcony, "archway":archway, "archwayTook":archwayTook, "backToCar":backToCar,
+    "diner":diner, "dinerTook":dinerTook, "keyDiner":keyDiner, "keyDinerTook":keyDinerTook, "keypad":keypad, "leftIntro2":leftIntro2,
+    "padlock":padlock, "policeCar":policeCar, "policeStation":policeStation, "sideStreet":sideStreet, "startNext":startNext,
+    "radio":radio, "radioTook":radioTook, "bathroomFactory":bathroomFactory, "crawl":crawl, "entryway":entryway, "factory":factory,
+    "hide":hide, "jump":jump, "logs":logs, "outside":outside,"policeStation":policeStation, "supplyCloset":supplyCloset,
+    "supplyClosetTook":supplyClosetTook,"wait":wait, "rightIntro2":rightIntro2}
+  
   return dict
   
 #-------------------------------------------Game Code-------------------------------------------
@@ -134,6 +168,8 @@ def adventure():
     while move!="exit":
       # Begin next level
       showInformation("[Next Stage]")
+      copyInto(images["startNext"], image, 0, 0)
+      repaint(image)
       play(sounds["startNext"])
       showInformation(messages["startNext"])
       stopPlaying(sounds["startNext"])
@@ -408,6 +444,18 @@ def firstStage(image):
       return "lost"
     # Archway
     elif location == 12:
+      if inven["batteries"] == true:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["archwayTook"]), image, 0, 0)
+        else:
+          copyInto(images["archwayTook"], image, 0, 0)
+        repaint(image)
+      else:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["archway"]), image, 0, 0)
+        else:
+          copyInto(images["archway"], image, 0, 0)
+        repaint(image)
       play(sounds["archway"])
       showInformation(messages["archway"])
       stopPlaying(sounds["openClose"])
@@ -415,7 +463,7 @@ def firstStage(image):
       if inven["batteries"] == false:
         response = askBatteries()
         if response == "true":
-          copyInto(images["foyerTook"], image, 0, 0)
+          copyInto(images["archwayTook"], image, 0, 0)
           repaint(image)
           inven["batteries"] = true
         if response in ["exit", "help", "i", "inventory"]:
@@ -452,14 +500,20 @@ def firstStage(image):
 #--------------------------------------------------------------------------------------------------------Left Stage
 def leftStage(image):
   global inven
+  flashlightOn = true
   play(sounds["start"])
   play(sounds["leftIntro"])
   showInformation(messages["leftIntro"])
   stopPlaying(sounds["leftIntro"])
+  copyInto(images["leftIntro2"], image, 0, 0)
   play(sounds["leftIntro2"])
   showInformation(messages["leftIntro2"])
+  repaint(image)
+  showInformation("You pull over the ever "
+    + "fainting car and walk into the diner, hoping to find some answers, or at least a sandwich.")
   stopPlaying(sounds["leftIntro2"])
   move = ""
+  levelStart = true
   location = 1 # Diner
   while move != "exit":
     # Check if user asked for help
@@ -470,17 +524,38 @@ def leftStage(image):
       getInventory()
     # Back to Car
     if location == 0:
+      copyInto(images["backToCar"], image, 0, 0)
+      repaint(image)
       play(sounds["backToCar"])
       showInformation(messages["backToCar"])
-      copyInto(gameOver(image), image, 0, 0)
+      copyInto(gameOver(images["backToCar"]), image, 0, 0)
+      play(sounds["gameOver"])
       repaint(image)
       showInformation(messages["loser"])
       stopPlaying(sounds["backToCar"])
       return "lost"
     # Diner
     elif location == 1:
-      play(sounds["diner"])
-      showInformation(messages["diner"])
+      if inven["radio"] == true:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["dinerTook"]), image, 0, 0)
+        else:
+          copyInto(images["dinerTook"], image, 0, 0)
+      else:
+        if flashlightOn:
+          copyInto(flashlightFilter(images["diner"]), image, 0, 0)
+        else:
+          copyInto(images["diner"], image, 0, 0)
+      repaint(image)
+      if levelStart:
+        levelStart = false
+        play(sounds["creakDiner"])
+        play(sounds["diner"])
+        showInformation("You press the creaking door open. " + messages["diner"])
+      else:
+        play(sounds["diner"])
+        showInformation(messages["diner"])
+      stopPlaying(sounds["creakDiner"])
       stopPlaying(sounds["diner"])
       move = askMove("nsew", "You can move north, south, east, or west.")
       if move == "s":#backToCar
@@ -491,12 +566,37 @@ def leftStage(image):
         location += 2
       elif move == "e":#sideStreet
         showInformation(messages["padlock"])
+        if flashlightOn:
+          copyInto(flashlightFilter(images["padlock"]), image, 0, 0)
+        else:
+          copyInto(images["padlock"], image, 0, 0)
+        repaint(image)
         play(sounds["lock"])
-        showInformation("You make sure to lock the door before you leave the room.")
+        showInformation("~The door is locked~")
         stopPlaying(sounds["lock"])
-        location += 3
+        if inven["keyDiner"] == true:
+          response = askUseKey()
+          if response == "true":
+            play(sounds["useKey"])
+            showInformation("You place the key in the lock. You struggle a bit...It works, you opened the door!")
+            stopPlaying(sounds["useKey"])
+            location += 3
+          elif response in ["exit", "help", "i", "inventory"]:
+            move = response
+            continue
     # Key Diner
     elif location == 2:
+      if flashlightOn:
+        if inven["keyDiner"] == true:
+          copyInto(flashlightFilter(images["keyDinerTook"]), image, 0, 0)
+        else:
+          copyInto(flashlightFilter(images["keyDiner"]), image, 0, 0)
+      else:
+        if inven["keyDiner"] == true:
+          copyInto(images["keyDinerTook"], image, 0, 0)
+        else:
+          copyInto(images["keyDiner"], image, 0, 0)
+      repaint(image)
       play(sounds["keyDiner"])
       if inven["keyDiner"] == true:
         showInformation(messages["keyDinerTook"])
@@ -505,8 +605,11 @@ def leftStage(image):
         stopPlaying(sounds["keyDiner"])
         response = askKeyDiner()
         if response == "true":
-          #copyInto(images["keyDinerTook"], image, 0, 0)
-          #repaint(image)
+          if flashlightOn:
+            copyInto(flashlightFilter(images["keyDinerTook"]), image, 0, 0)
+          else:
+            copyInto(images["keyDinerTook"], image, 0, 0)
+          repaint(image)
           inven["keyDiner"] = true
         if response in ["exit", "help", "i", "inventory"]:
           move = response
@@ -516,6 +619,17 @@ def leftStage(image):
         location -= 1
     # Radio
     elif location == 3:
+      if flashlightOn:
+        if inven["radio"] == true:
+          copyInto(flashlightFilter(images["radioTook"]), image, 0, 0)
+        else:
+          copyInto(flashlightFilter(images["radio"]), image, 0, 0)
+      else:
+        if inven["radio"] == true:
+          copyInto(images["radioTook"], image, 0, 0)
+        else:
+          copyInto(images["radio"], image, 0, 0)
+      repaint(image)
       play(sounds["radio"])
       if inven["radio"] == true:
         showInformation(messages["radioTook"])
@@ -525,8 +639,8 @@ def leftStage(image):
         stopPlaying(sounds["radio"])
         response = askRadio()
         if response == "true":
-          #copyInto(images["radioTook"], image, 0, 0)
-          #repaint(image)
+          copyInto(images["radioTook"], image, 0, 0)
+          repaint(image)
           inven["radio"] = true
         if response in ["exit", "help", "i", "inventory"]:
           move = response
@@ -536,6 +650,11 @@ def leftStage(image):
         location -= 2
     # Side Street
     elif location == 4:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["sideStreet"]), image, 0, 0)
+      else:
+        copyInto(images["sideStreet"], image, 0, 0)
+      repaint(image)
       showInformation(messages["sideStreet"])
       move = askMove("ew", "You can move east or west.")
       if move == "w":#diner
@@ -544,11 +663,16 @@ def leftStage(image):
         location += 1
     # See Police
     elif location == 5:
-      #
+      if flashlightOn:
+        copyInto(flashlightFilter(images["policeCar"]), image, 0, 0)
+      else:
+        copyInto(images["policeCar"], image, 0, 0)
       if inven["notepad"] == true:
+        repaint(image)
         showInformation(messages["policeCarTook"])
       else:
         showInformation(messages["seePolice"])
+        repaint(image)
         showInformation(messages["policeCar"])
         response = askNotepad()
         if response == "true":
@@ -578,6 +702,8 @@ def leftStage(image):
             location += 2 #loseRadio
     # Police Station
     elif location == 6:
+      copyInto(images["policeStation"], image, 0, 0)
+      repaint(image)
       showInformation(messages["policeStation"])
       showInformation(messages["win2"])
       showInformation(messages["winnerDiner"])
@@ -588,17 +714,22 @@ def leftStage(image):
       showInformation(messages["loseRadio"])
       copyInto(gameOver(image), image, 0, 0)
       repaint(image)
+      play(sounds["gameOver"])
       showInformation(messages["loser"])
+      stopPlaying(sounds["gameOver"])
       return "lost"
 
 #--------------------------------------------------------------------------------------------------------Right Stage
 def rightStage(image):
   global inven
+  flashlightOn = true
   play(sounds["start"])
   play(sounds["rightIntro"])
   showInformation(messages["rightIntro"])
   stopPlaying(sounds["rightIntro"])
+  copyInto(images["rightIntro2"], image, 0, 0)
   play(sounds["rightIntro2"])
+  repaint(image)
   showInformation(messages["rightIntro2"])
   stopPlaying(sounds["rightIntro2"])
   move = ""
@@ -612,6 +743,11 @@ def rightStage(image):
       getInventory()
     # Entryway
     if location == 0:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["entryway"]), image, 0, 0)
+      else:
+        copyInto(images["entryway"], image, 0, 0)
+      repaint(image)
       showInformation(messages["entryway"])
       move = askMove("new", "You can move north, east, or west.")
       if move == "w":#bathroomFactory
@@ -622,29 +758,54 @@ def rightStage(image):
         location += 3
     # Factory Bathroom
     elif location == 1:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["bathroomFactory"]), image, 0, 0)
+      else:
+        copyInto(images["bathroomFactory"], image, 0, 0)
+      repaint(image)
       showInformation(messages["bathroomFactory"])
       move = askMove("e", "You can move East.")
       if move == "e":#entryway
         location -= 1
     # Supply Closet
     elif location == 2:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["supplyCloset"]), image, 0, 0)
+      else:
+        copyInto(images["supplyCloset"], image, 0, 0)
+      repaint(image)
       showInformation(messages["supplyCloset"])
       move = askMove("w", "You can move west.")
       if move == "w":#entryway
         location -= 2
     # Factory
     elif location == 3:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["factory"]), image, 0, 0)
+      else:
+        copyInto(images["factory"], image, 0, 0)
+      repaint(image)
       showInformation(messages["factory"])
       move = askMove("ns", "You can move north or south.")
       if move == "s":#entryway
         location -= 3
       elif move == "n":#asklogs
+        if flashlightOn:
+          copyInto(flashlightFilter(images["outside"]), image, 0, 0)
+        else:
+          copyInto(images["outside"], image, 0, 0)
+        repaint(image)
         if askLogs():
           location += 1#logs
         else:
           showInformation("You start walking back inside.")
     # Logs
     elif location == 4:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["logs"]), image, 0, 0)
+      else:
+        copyInto(images["logs"], image, 0, 0)
+      repaint(image)
       showInformation(messages["logs"])
       move = askActions("hj", "You can hide or jump.")
       if move == "j":#jump
@@ -653,21 +814,42 @@ def rightStage(image):
         location += 2
     # Jump
     elif location == 5:
+      if flashlightOn:
+        copyInto(flashlightFilter(images["jump"]), image, 0, 0)
+      else:
+        copyInto(images["jump"], image, 0, 0)
+      repaint(image)
       showInformation(messages["jump"])
-      copyInto(gameOver(image), image, 0, 0)
+      copyInto(gameOver(images["jump"]), image, 0, 0)
+      play(sounds["gameOver"])
       repaint(image)
       showInformation(messages["loser"])
+      stopPlaying(sounds["gameOver"])
       return "lost"
     # Hide
     elif location == 6:
+      copyInto(images["hide"], image, 0, 0)
+      repaint(image)
       showInformation(messages["hide"])
       move = askActions("cw", "You can crawl or wait.")
       if move == "c":#crawl
+        copyInto(images["crawl"], image, 0, 0)
+        repaint(image)
         showInformation(messages["crawl"])
+        copyInto(gameOver(images["crawl"]), image, 0, 0)
+        play(sounds["gameOver"])
+        repaint(image)
         showInformation(messages["loser"])
+        stopPlaying(sounds["gameOver"])
       elif move == "w":#wait
+        copyInto(images["wait"], image, 0, 0)
+        repaint(image)
         showInformation(messages["wait"])
+        copyInto(gameOver(images["wait"]), image, 0, 0)
+        play(sounds["gameOver"])
+        repaint(image)
         showInformation(messages["loser"])
+        stopPlaying(sounds["gameOver"])
       return "lost"
       
 # This function tells the user there is a flashlight and asks if the user will take it
@@ -999,11 +1181,9 @@ def getMessagesDict():
     +"to be a nestled town for what seems to be made for the working class. Here in this town "\
     +"you see and post office with a town hall adjacent, a steeple from a church so tall it "\
     +"seems to be point the stars above, and most of across from the church is the true hope "\
-    +"in your heart...a diner. "\
-    +"You pull over the ever fainting car and walk into the diner, hoping to find some"\
-    +"answers, or at least a sandwich."
+    +"in your heart...a diner. "
   diner = "\n-----Diner-----\n"\
-    +"You press the creaking door open and see the checkered floor below your feet. You are shocked that the "\
+    +"You see the checkered floor below your feet and are shocked that the "\
     +"diner is abandoned. Feeling overwhelmed by the contrasting colored floor you look straight ahead (north). "\
     +"In front of you is a cold bar top accompanied by a swiveling cushion chair. You look to the left (west) and more "\
     +"chairs and tables. To the right (east) you see an unlabeled door. There is no one to be seen and "\
@@ -1288,7 +1468,7 @@ def getInventory():
   if inven["keyDiner"] == true:
     str = "\n A small key found on a table in the diner. It is very small and seems to be for some type of metal door. \n"
     allFalse = false
-    message = message + atr
+    message = message + str
     
   if inven["radio"] == true:
     str = "\n A small red radio. There does not seems to be a way to open the radio to check the batteries. Oddly enough it still seems to make nosies from time to time. \n"
