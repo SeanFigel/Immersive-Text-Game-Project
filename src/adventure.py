@@ -112,6 +112,7 @@ def getImagesDict():
   policeCar = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\policeCar.jpg")
   policeStation = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\policeStation.jpg")
   sideStreet = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\sideStreet.jpg")
+  sideStreetTransition = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\sideStreetTransition.jpg")
   startNext = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\startNext.jpg")
   radio = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\radio.jpg")
   radioTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\radioTook.jpg")
@@ -128,14 +129,15 @@ def getImagesDict():
   supplyClosetTook = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\supplyClosetTook.jpg")
   wait = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\wait.jpg")
   rightIntro2 = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\rightIntro2.jpg")
+  win2 = makePicture("C:\\Users\\Moises\\Desktop\\GitHub\\Immersive-Text-Game-Project\\resources\\images\\win2.jpg")
   dict = {"bedroom":bedroom, "bedroomSouth":bedroomSouth, "bathroomTook":bathroomTook, "bedroomNorth":bedroomNorth,
     "bathroomFoundKeyTook":bathroomFoundKeyTook, "closet":closet, "closetTook":closetTook, "closetFoundFL":closetFoundFL,
     "hallSouth":hallSouth, "hallNorth":hallNorth, "bathroom":bathroom, "bathroomFoundKey": bathroomFoundKey, "masterBedroom":masterBedroom,
     "foyer":foyer, "foyerTook":foyerTook,"balcony":balcony, "archway":archway, "archwayTook":archwayTook, "backToCar":backToCar,
     "diner":diner, "dinerTook":dinerTook, "keyDiner":keyDiner, "keyDinerTook":keyDinerTook, "keypad":keypad, "leftIntro2":leftIntro2,
-    "padlock":padlock, "policeCar":policeCar, "policeStation":policeStation, "sideStreet":sideStreet, "startNext":startNext,
-    "radio":radio, "radioTook":radioTook, "bathroomFactory":bathroomFactory, "crawl":crawl, "entryway":entryway, "factory":factory,
-    "hide":hide, "jump":jump, "logs":logs, "outside":outside,"policeStation":policeStation, "supplyCloset":supplyCloset,
+    "padlock":padlock, "policeCar":policeCar, "policeStation":policeStation, "sideStreet":sideStreet, "sideStreetTransition":sideStreetTransition,
+    "startNext":startNext, "radio":radio, "radioTook":radioTook, "bathroomFactory":bathroomFactory, "crawl":crawl, "entryway":entryway,
+    "factory":factory, "hide":hide, "jump":jump, "logs":logs, "outside":outside,"policeStation":policeStation, "supplyCloset":supplyCloset,
     "supplyClosetTook":supplyClosetTook,"wait":wait, "rightIntro2":rightIntro2, "brokenLose":brokenLose,
     "woodenDoorsLose":woodenDoorsLose, "woodenDoorsWin":woodenDoorsWin}
   
@@ -683,6 +685,14 @@ def leftStage(image):
       if move == "w":#diner
         location -= 3
       elif move == "e":#seePolice
+        if flashlightOn:
+          copyInto(flashlightFilter(images["sideStreetTransition"]), image, 0, 0)
+        else:
+          copyInto(images["sideStreetTransition"], image, 0, 0)
+        repaint(image)
+        play(sounds["sideStreet"])
+        showInformation("It is really foggy here.")
+        stopPlaying(sounds["sideStreet"])
         location += 1
     # See Police
     elif location == 5:
@@ -709,9 +719,16 @@ def leftStage(image):
         if response in ["exit", "help", "i", "inventory"]:
           move = response
           continue
-        
       move = askMove("ew", "You can move east or west.")
       if move == "w":#sideStreet
+        if flashlightOn:
+          copyInto(flashlightFilter(images["sideStreetTransition"]), image, 0, 0)
+        else:
+          copyInto(images["sideStreetTransition"], image, 0, 0)
+        repaint(image)
+        play(sounds["sideStreet"])
+        showInformation("It is really foggy here.")
+        stopPlaying(sounds["sideStreet"])
         location -= 1
       elif move == "e":#keypad
         if flashlightOn:
@@ -728,7 +745,7 @@ def leftStage(image):
           showInformation(messages["correctCode"])
           stopPlaying(sounds["correctCode"])
           location += 1 #policeStation
-        elif response in ["exit", "help", "i", "inventory"]:
+        elif response == "exit":
           move = response
           continue
         else:
@@ -1112,15 +1129,22 @@ def askName():
 
 # Asks the user for keypad code.
 def askCode():
-  userInput = requestString("Please enter code:")
-  try:
-    userInput = userInput.lower()
-  except:
-    return "exit"
-  if userInput == "4825":
-    return "true"
-  else:
-    return userInput
+  while(true):
+    userInput = requestString("Please enter code:")
+    try:
+      userInput = userInput.lower()
+    except:
+      return "exit"
+    if userInput == "4825":
+      return "true"
+    elif userInput in ["i", "inventory"]:
+      getInventory()
+      continue
+    elif userInput == "help":
+      showInformation(messages["help"])
+      continue
+    else:
+      return userInput
 
 # Asks the user to go to the logs
 def askLogs():
