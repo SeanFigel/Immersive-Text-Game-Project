@@ -638,7 +638,7 @@ def leftStage(image):
       play(sounds["levelComplete"])
       repaint(image)
       showInformation(messages["winnerDiner"])
-      stopPlaying(sound)
+      stopPlaying(sounds["levelComplete"])
       return "won"
     # Lose Radio
     elif location == 7:
