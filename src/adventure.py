@@ -575,7 +575,7 @@ def leftStage(image):
       else:
         play(sounds["seePolice"])
         showInformation(messages["seePolice"])
-        play(sounds["seePolice"])
+        stopPlaying(sounds["seePolice"])
         repaint(image)
         play(sounds["policeCar"])
         showInformation(messages["policeCar"])
