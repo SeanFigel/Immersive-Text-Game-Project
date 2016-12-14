@@ -139,7 +139,7 @@ def getImagesDict():
     "startNext":startNext, "radio":radio, "radioTook":radioTook, "bathroomFactory":bathroomFactory, "crawl":crawl, "entryway":entryway,
     "factory":factory, "hide":hide, "jump":jump, "logs":logs, "outside":outside,"policeStation":policeStation, "supplyCloset":supplyCloset,
     "supplyClosetTook":supplyClosetTook,"wait":wait, "rightIntro2":rightIntro2, "brokenLose":brokenLose,
-    "woodenDoorsLose":woodenDoorsLose, "woodenDoorsWin":woodenDoorsWin}
+    "woodenDoorsLose":woodenDoorsLose, "woodenDoorsWin":woodenDoorsWin, "win2":win2}
   
   return dict
   
